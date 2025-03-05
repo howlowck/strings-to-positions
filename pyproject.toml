@@ -7,9 +7,7 @@ authors = [
     { name = "Hao Luo", email = "338265+howlowck@users.noreply.github.com" }
 ]
 requires-python = ">=3.8"
-dependencies = [
-    "pydantic>=2.10.6",
-]
+dependencies = []
 
 [build-system]
 requires = ["hatchling"]

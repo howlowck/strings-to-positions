@@ -1,11 +1,16 @@
-from pydantic import BaseModel, ValidationError
 from typing import List, Union, Optional, Dict, Tuple
 
 
-class Options(BaseModel):
-    case_sensitive: bool = True
-    allow_overlap: bool = True
-    overlap_size: Optional[int] = None
+class Options:
+    def __init__(
+        self,
+        case_sensitive: bool = True,
+        allow_overlap: bool = True,
+        overlap_size: Optional[int] = None,
+    ):
+        self.case_sensitive = case_sensitive
+        self.allow_overlap = allow_overlap
+        self.overlap_size = overlap_size
 
 
 def _find_offset_naive(
@@ -44,7 +49,7 @@ def to_offsets(
     elif isinstance(options, dict):
         try:
             options = Options(**options)
-        except ValidationError as e:
+        except ValueError as e:
             raise ValueError(f"Invalid options provided: {e}")
 
     results: List[Optional[Tuple[int, int]]] = []
