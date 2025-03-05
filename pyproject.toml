@@ -1,6 +1,6 @@
 [project]
 name = "strings-to-positions"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python package to convert strings to positions in a source text"
 readme = "README.md"
 authors = [
