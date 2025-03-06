@@ -38,6 +38,9 @@ def to_offsets(
       - source: The full text.
       - chunks: A list of substrings to search for in the source.
       - options: A pydantic Options model (or dict) specifying the search parameters.
+        - case_sensitive: If True, the search is case-sensitive. Default is True.
+        - allow_overlap: If True, allows overlapping matches. Default is True.
+        - overlap_size: If specified, the minimum size of overlap to consider. Default is None.
 
     Returns:
       A list where each element corresponds to a chunk from the input list. Each element is either
@@ -66,7 +69,11 @@ def to_offsets(
             if not options.allow_overlap:
                 from_index = offset[1]
             else:
-                from_index = offset[0]
+                # if overlap_size is specified, set the from_index to the start + overlap_size
+                if options.overlap_size is not None:
+                    from_index = offset[1] - options.overlap_size
+                else:
+                    from_index = offset[0]
         else:
             # If chunk not found, set to None
             offset = None

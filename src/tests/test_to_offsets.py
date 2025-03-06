@@ -62,6 +62,12 @@ def test_naive_overlap(
     )
     assert result == overlap_offsets
 
+def test_overlap_size(overlap_size_document, overlap_size_chunks, overlap_size_offsets):
+    """Test conversion for a long text with overlapping chunks."""
+    result = to_offsets(
+        overlap_size_document, overlap_size_chunks, {"overlap_size": 15}
+    )
+    assert result == overlap_size_offsets
 
 def test_performance(benchmark, markdown_source, overlap_chunks):
     result = benchmark(to_offsets, markdown_source, overlap_chunks)

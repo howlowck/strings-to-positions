@@ -118,3 +118,35 @@ def overlap_chunks(overlap_chunk_1, overlap_chunk_2, overlap_chunk_3, overlap_ch
 @pytest.fixture(scope="module")
 def overlap_offsets():
     return [(0, 368), (331, 572), (522, 716), (634, 759)]
+
+@pytest.fixture(scope="module")
+def overlap_size_document():
+    return """water water water water water water water water water water water
+water water water water water water water water water water water water water water water water
+water water water water water water water water water water
+water water water water water water water water water water water water water water water water"""
+
+
+@pytest.fixture(scope="module")
+def overlap_size_chunks():
+    return [
+        "water water water water water water water",
+        """water water water water water water
+water water water water water water water """,
+        """water water water water water water water water water water water""",
+        """water water
+water water water water water water water water water water""",
+        """water water
+water water water water water water water water water water water water water water water water""",
+    ]
+
+
+@pytest.fixture(scope="module")
+def overlap_size_offsets():
+    return [
+        (0, 41),
+        (30, 108),
+        (96, 161),
+        (150, 221),
+        (210, 317),
+    ]
