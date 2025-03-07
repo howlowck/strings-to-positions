@@ -82,6 +82,23 @@ def to_offsets(
 
     return results
 
+def to_strings(source: str, offsets: List[Tuple[int, int]]) -> List[str]:
+    """
+    Given a source text and a list of offsets, return the corresponding substrings.
+    """
+    results = []
+    if not offsets:
+        return results
+    for offset in offsets:
+        if offset is None:
+            results.append(None)
+            continue
+        start, end = offset
+        if start is not None and end is not None:
+            results.append(source[start:end])
+        else:
+            results.append(None)
+    return results
 
 def offset_to_position(
     source: str, offset: Tuple[int, int]
