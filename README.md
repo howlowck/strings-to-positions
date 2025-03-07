@@ -13,7 +13,7 @@ pip install strings-to-positions
 ### Usage Example
 
 ```py
-from strings_to_positions import to_offsets, offset_to_position
+from strings_to_positions import to_offsets, to_strings, offset_to_position
 
 # The Source Document
 source_document = """# Introduction to Markdown
@@ -63,6 +63,13 @@ for offset in offsets:
     #    "end": {"line": 4, "column": 61, "offset": 291},
     # }
     positionsList.append(position)
+
+# ... later, after the offsets have been changed...
+# new_offsets = [(0, 293), (294, 535)]
+
+new_chunks = to_strings(source_document, new_offsets)
+
+# new_chunks will be a new list of strings that correspond with the new_offsets
 
 ```
 
